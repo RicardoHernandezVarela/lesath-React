@@ -9,8 +9,7 @@ const Header = (props) => {
             <a href="/" className="logo">Lesath</a>
             <h2 className="biosignals">Biosignals</h2>
             <BluetoothConnection 
-                conectar={props.conectar} 
-                desconectar={props.desconectar}
+                obtenerEstadoConexion={props.obtenerEstadoConexion}
             />
         </div>
     );
