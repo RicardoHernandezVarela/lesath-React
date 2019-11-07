@@ -1,26 +1,29 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {Component} from 'react';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+/* App components imports */
+import Header from './componentes/Header'
+
+class App extends Component {
+
+  conectar = () => {
+    console.log('conectar');
+  }
+
+  desconectar = () => {
+    console.log('desconectar');
+  }
+
+  render(){
+    return (
+      <div className="container">
+        <Header 
+          conectar={this.conectar} 
+          desconectar={this.desconectar}
+        />
+      </div>
+    );
+  }
 }
 
 export default App;
