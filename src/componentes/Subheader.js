@@ -1,12 +1,12 @@
 import React from 'react'
 
 /* Subheader imports */
-//import Terminal from './Terminal';
+import Terminal from './Terminal';
 
-const Subheader = () => {
+const Subheader = (props) => {
     return (
         <div className="subheader">
-
+            <Terminal mensaje={props.mensaje}/>
         </div>
     )
 }

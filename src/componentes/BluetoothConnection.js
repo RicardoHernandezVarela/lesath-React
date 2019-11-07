@@ -67,6 +67,7 @@ class BluetoothConnection extends Component {
             .then(service => this.obtenerCaracteristicasDelServicio(service))
             .then(characteristics => this.conectarConCaracteristica(characteristics))
             .then(prom => this.props.obtenerEstadoConexion(prom))
+            .catch(err => this.props.obtenerEstadoConexion(`Fallo la conexión, ${err}`))
     }
 
     desconectar = () => {
@@ -74,7 +75,7 @@ class BluetoothConnection extends Component {
         if (this.state.dispositivo) {
             // desconectar:
             this.state.dispositivo.gatt.disconnect();
-            this.props.obtenerEstadoConexion(this.state.dispositivo);
+            this.props.obtenerEstadoConexion('Dispositivo desconectado');
           }
     }
 
