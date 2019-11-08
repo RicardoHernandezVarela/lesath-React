@@ -5,6 +5,7 @@ import './App.css';
 import Header from './componentes/Header';
 import Subheader from './componentes/Subheader';
 import Plot from './componentes/Plot';
+import Buttons from './componentes/Buttons';
 
 class App extends Component {
 
@@ -20,7 +21,6 @@ class App extends Component {
       this.setState({mensaje: 'Conectando...'});
 
       this.setState({ caracteristica: estado});
-      //console.log('caract: ', this.state.caracteristica);
   
       this.setState({mensaje: 'Dispositivo conectado'});
 
@@ -34,7 +34,8 @@ class App extends Component {
       <div className="container">
         <Header obtenerEstadoConexion={this.obtenerEstadoConexion}/>
         <Subheader mensaje={this.state.mensaje} />
-        <Plot caracteristica={this.state.caracteristica}/>
+        <Plot caracteristica={this.state.caracteristica} />
+        <Buttons caracteristica={this.state.caracteristica} />
       </div>
     );
   }
