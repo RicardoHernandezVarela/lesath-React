@@ -25,6 +25,8 @@ class Plot extends PureComponent  {
             ]
         }));
 
+        //Incluir aquí la función para plotear en tiempo real.
+
         //console.log(typeof value);
     }
 

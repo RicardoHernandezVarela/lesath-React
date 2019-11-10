@@ -17,15 +17,22 @@ class App extends Component {
 
   obtenerEstadoConexion = (estado) => {
 
-    if (typeof estado !== 'string') {
-      this.setState({mensaje: 'Conectando...'});
+    /* Obtener información del estado de la conexión desdé
+    el componente BluetoothConnection.  */
 
-      this.setState({ caracteristica: estado});
+    if (typeof estado !== 'string') {
+      this.setState({
+        mensaje: 'Dispositivo conectado', 
+        caracteristica: estado
+      });
+
+      //this.setState({ caracteristica: estado});
   
-      this.setState({mensaje: 'Dispositivo conectado'});
+      //this.setState({mensaje: 'Dispositivo conectado'});
 
     } else {
       this.setState({mensaje: estado});
+      //caracteristicaLista: false,
     }
   }
 

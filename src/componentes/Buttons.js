@@ -10,13 +10,15 @@ class Buttons extends PureComponent {
   send = (caracteristica, data) => {
     /* Enviar caracteres al módulo BLE para que las pase al 
     microcontrolador que conecta con el sensor */
+    
     caracteristica.writeValue(new TextEncoder().encode(data));
   }
 
   iniciar = () => {
     /* Función para iniciar la transmición de datos 
     del sensor a través del módulo BT */
-    if(this.props.caracteristica !== 'string') {
+
+    if(this.props.caracteristica) {
       this.send(this.props.caracteristica, 'i');
       console.log('iniciar la transmición de datos', this.props.caracteristica);
     } else {
@@ -27,7 +29,8 @@ class Buttons extends PureComponent {
   parar = () => {
     /* Función para detener la transmición de datos 
     del sensor a través del módulo BT */
-    if(this.props.caracteristica !== 'string') {
+
+    if(this.props.caracteristica) {
       this.send(this.props.caracteristica, 'p');
       console.log('parar la transmición de datos');
     } else {
