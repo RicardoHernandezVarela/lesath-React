@@ -43,24 +43,28 @@ class Plot extends PureComponent  {
         caracteristicaLista es igual a false */
 
         if(this.state.caracteristicaLista === false && typeof this.props.caracteristica !== 'string') {
-            //console.log('caract in plot: ', this.props.caracteristica);
-            this.setState({caracteristicaLista: true});
-
+        
             this.conectarseACambiosDelSensor(this.props.caracteristica);
+            this.setState({caracteristicaLista: true});
+            //console.log('caract in plot: ', this.props.caracteristica.oncharacteristicvaluechanged == null);
+
             //console.log('listo para recibir datos');
 
-        } else if (this.state.caracteristicaLista) {
-            //console.log('ya se conecto');
+        } else if (this.props.caracteristica.oncharacteristicvaluechanged == null) {
+            console.log('false')
+            this.setState({caracteristicaLista: false})
         } else {
-            console.log('no se conecto a la caract');
+            //console.log('no se conecto a la caract');
         }
 
     }
 
     render() {
         
+        const datos = this.state.datosSensor; 
+
         return (
-            <div className="plot">Live Plot</div>
+        <div className="plot">{datos.length}</div>
         )
     }
 }

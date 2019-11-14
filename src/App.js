@@ -23,16 +23,12 @@ class App extends Component {
     if (typeof estado !== 'string') {
       this.setState({
         mensaje: 'Dispositivo conectado', 
-        caracteristica: estado
+        caracteristica: estado,
+        caracteristicaLista: true
       });
-
-      //this.setState({ caracteristica: estado});
-  
-      //this.setState({mensaje: 'Dispositivo conectado'});
 
     } else {
       this.setState({mensaje: estado});
-      //caracteristicaLista: false,
     }
   }
 
