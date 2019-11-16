@@ -1,5 +1,8 @@
 import React, {PureComponent } from 'react';
 
+/* Plot imports */
+import Chart from './Chart';
+
 class Plot extends PureComponent  {
 
     state = {
@@ -56,15 +59,25 @@ class Plot extends PureComponent  {
         } else {
             //console.log('no se conecto a la caract');
         }
+    };
 
+    checarRef =  (ref) => {
+        //console.log(ref.current.clientWidth, ref.current.clientHeight);
+        console.log(ref);
     }
 
     render() {
         
         const datos = this.state.datosSensor; 
+        const datosLength = datos.length;
+        const plotRef = React.createRef();
+
+        const datoGraf = datos[datos.length - 1];
 
         return (
-        <div className="plot">{datos.length}</div>
+        <div className="plot" ref={plotRef} onClick={() => this.checarRef(plotRef)}>
+            <Chart datos={datosLength} datoGraf={datoGraf}/>
+        </div>
         )
     }
 }

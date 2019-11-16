@@ -136,6 +136,19 @@ PLOT
 .plot {
   background-color: #c2b8b2;
   grid-column: 1/-1;
+
+  display: grid;
+  grid-template-columns: repeat(9, 1fr);
+  padding-top: 10px;
+}
+
+.chart {
+  grid-column: 2/-1;
+}
+
+.y-axis {
+  grid-column: 1/2;
+  max-width: 45px;
 }
 
 /*************************************************
@@ -192,4 +205,45 @@ BOTONES
   background-color: #0F084B;
   box-shadow: 0 5px #666;
   transform: translateY(2px);
+}
+
+/**************************************
+Ajuste para otros dispositivos
+**************************************/
+@media (min-height: 350px) {
+  .container {
+      grid-template-rows: 11vh 15vh 59vh 15vh;
+  }
+}
+
+@media (min-height: 500px) {
+  .container {
+      grid-template-rows: 8vh 9vh 74vh 9vh;
+  }
+}
+
+@media (min-width: 300px) {
+  .chart {
+      margin-left: 5px;
+  }
+}
+
+@media (min-width: 800px) {
+  .y-axis {
+      margin-left: 60px;
+  }
+
+  .chart {
+      margin-left: -2px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .y-axis {
+      margin-left: 75px;
+  }
+  
+  .chart {
+      margin-left: -22px;
+  }
 }
