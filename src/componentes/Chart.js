@@ -7,6 +7,7 @@ class Chart extends Component {
         chart: '',
         yAxis: '',
         plot: '',
+        y: '',
         plotListo: false
     }
 
@@ -18,6 +19,13 @@ class Chart extends Component {
         this.setState({yAxis: el})
     }
 
+    ajustar = (plotA) => {
+        plotA.configure({
+            width: this.state.chart.parentNode.clientWidth * 0.8,
+            height: this.state.chart.parentNode.clientHeight * 0.9,
+        });
+    };
+
     graficar = (plotA) => {
         plotA.series.addData({ data: this.props.datoGraf});
         plotA.render();
@@ -25,7 +33,6 @@ class Chart extends Component {
 
     componentDidMount() {
         console.log(this.state.chart);
-
     }
 
     componentDidUpdate() {
@@ -36,8 +43,8 @@ class Chart extends Component {
             this.setState({
                 plot: new Rickshaw.Graph({
                     element: this.state.chart,
-                    width: 500,
-                    height: 250,
+                    width: 300,
+                    height: 200,
                     renderer: "line",
                     min: "0",
                     max: "4",
@@ -52,13 +59,12 @@ class Chart extends Component {
                 }),
 
                 plotListo: true,
-                datosListos: true
 
-            })
-
+            });
         }
-        
-        if(this.state.plot !== '' && this.state.plotListo === true) {
+
+        if(this.props.datos > 0 && this.state.plotListo === true) {
+            this.ajustar(plotA);
             this.graficar(plotA);
         }
     }
@@ -67,7 +73,7 @@ class Chart extends Component {
         //console.log(this.state.plot);
         return (
             <Fragment>
-                <div className="y-axis" ref={this.axisRef}> {this.props.datos} </div>
+                <div className="y-axis" ref={this.axisRef}>  </div>
                 <div className="chart" ref={this.chartRef}>  </div>
             </Fragment>
         )

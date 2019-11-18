@@ -28,6 +28,7 @@ HEADER
 *************************************************/
 .header {
   background-color: #197bbd;
+  border-bottom: 3px solid #686963;
   grid-column: 1/-1;
 
   display: grid;

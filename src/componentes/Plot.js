@@ -1,9 +1,9 @@
-import React, {PureComponent } from 'react';
+import React, {Component } from 'react';
 
 /* Plot imports */
 import Chart from './Chart';
 
-class Plot extends PureComponent  {
+class Plot extends Component  {
 
     state = {
         caracteristicaLista: false,
