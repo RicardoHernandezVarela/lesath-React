@@ -2,12 +2,14 @@ import React, {Component } from 'react';
 
 /* Plot imports */
 import Chart from './Chart';
+import Yaxis from './Yaxis'
 
 class Plot extends Component  {
 
     state = {
         caracteristicaLista: false,
-        datosSensor: []
+        datosSensor: [],
+        plot: ''
     }
 
     recibirDatos = (event) => {
@@ -19,7 +21,7 @@ class Plot extends Component  {
         let res = datos.split("\n");
         res.pop();
 
-        let valores = res.map(num => parseInt(num)*3.7/1023);
+        let valores = res.map(num => (parseInt(num)*3.7/1023));
 
         this.setState(prevState => ({
             datosSensor: [                
@@ -49,34 +51,31 @@ class Plot extends Component  {
         
             this.conectarseACambiosDelSensor(this.props.caracteristica);
             this.setState({caracteristicaLista: true});
-            //console.log('caract in plot: ', this.props.caracteristica.oncharacteristicvaluechanged == null);
 
-            //console.log('listo para recibir datos');
-
-        } else if (this.props.caracteristica.oncharacteristicvaluechanged == null) {
-            console.log('false')
+        } else if (this.props.caracteristica !== '' && this.props.caracteristica.oncharacteristicvaluechanged == null) {
+            console.log(this.props.caracteristica);
             this.setState({caracteristicaLista: false})
         } else {
-            //console.log('no se conecto a la caract');
+            //console.log('no se conecto a la caract');<Yaxis plot={this.state.plot}/>
         }
     };
 
-    checarRef =  (ref) => {
-        //console.log(ref.current.clientWidth, ref.current.clientHeight);
-        console.log(ref);
+    obtenerPlotObj =  (obj) => {
+        this.setState({plot: obj}, console.log('plot obj from plot', this.state.plot))
     }
 
     render() {
         
         const datos = this.state.datosSensor; 
-        const datosLength = datos.length;
+        let datosLength = datos.length;
         const plotRef = React.createRef();
 
         const datoGraf = datos[datos.length - 1];
 
         return (
-        <div className="plot" ref={plotRef} onClick={() => this.checarRef(plotRef)}>
-            <Chart datos={datosLength} datoGraf={datoGraf}/>
+        <div className="plot" ref={plotRef}>
+            <Yaxis plot={this.state.plot}/>
+            <Chart datos={datosLength} datoGraf={datoGraf} obtenerPlotObj={this.obtenerPlotObj}/>
         </div>
         )
     }
