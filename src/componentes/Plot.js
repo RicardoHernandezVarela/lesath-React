@@ -30,9 +30,6 @@ class Plot extends Component  {
             ]
         }));
 
-        //Incluir aquí la función para plotear en tiempo real.
-
-        //console.log(typeof value);
     }
 
     conectarseACambiosDelSensor = (caracteristica) => {

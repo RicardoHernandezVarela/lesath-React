@@ -16,7 +16,7 @@ class Chart extends Component {
     ajustar = (plotA) => {
         plotA.configure({
             width: this.state.chart.parentNode.clientWidth * 0.8,
-            height: this.state.chart.parentNode.clientHeight * 0.75,
+            height: this.state.chart.parentNode.clientHeight * 0.85,
         });
     };
 
@@ -29,11 +29,17 @@ class Chart extends Component {
         let plotA = this.state.plot;
 
         if(this.state.plotListo === false && this.state.chart !== '') {
+
+            let plotWidth = this.state.chart.parentNode.clientWidth;
+            let pltWidth = 0;
+            plotWidth <= 380 ? pltWidth = plotWidth * 0.7 : pltWidth = plotWidth * 0.8;
+            console.log(plotWidth, pltWidth);
+
             this.setState({
                 plot: new Rickshaw.Graph({
                     element: this.state.chart,
-                    width: this.state.chart.parentNode.clientWidth * 0.8,//724,
-                    height: this.state.chart.parentNode.clientHeight * 0.75, //388.8,
+                    width: pltWidth,
+                    height: this.state.chart.parentNode.clientHeight * 0.85, 
                     renderer: "line",
                     min: "0",
                     max: "4",
@@ -42,7 +48,7 @@ class Chart extends Component {
                         color: '#446CB3'
                     }], undefined, 
                     {
-                        timeInterval: 250, //milisegundos
+                        timeInterval: 300, //milisegundos
                         maxDataPoints: 200
                     })
                 }),
@@ -50,9 +56,6 @@ class Chart extends Component {
                 plotListo: true,
 
             }, () => this.props.obtenerPlotObj(this.state.plot));
-
-            console.log(this.state.chart.parentNode.clientWidth);
-
         }
 
         if(this.props.datos > 0 && this.state.plotListo === true) {
@@ -66,7 +69,7 @@ class Chart extends Component {
         //window.addEventListener('resize', () => this.ajustar(this.state.plot))
 
         return (
-            <div className="chart" ref={this.chartRef}>  </div>
+            <div className="chart" ref={this.chartRef} >  </div>
         )
     }
 }

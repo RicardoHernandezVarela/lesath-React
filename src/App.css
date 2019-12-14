@@ -4,6 +4,7 @@ GENERAL
 body {
   margin: 0;
   padding: 0;
+  background-color: #c2b8b2;
 }
 
 a {
@@ -62,7 +63,7 @@ HEADER
   grid-column: 8 / 9;
 
   display: flex;
-  margin: 8.5% auto;
+  margin: 6px auto;
   color: #CEE7E6;
 }
 
@@ -89,8 +90,8 @@ SUBHEADER
   flex-direction: column;
   margin: 0 auto;
   margin-top: 4%;
-  width: 50px;
-  height: 50px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
 }
 
@@ -99,7 +100,7 @@ SUBHEADER
 
   display: block;
   margin: 3% auto;
-  font-size: 0.8em;
+  font-size: 0.7em;
   color: #125e8a;
   text-align: center;
 }
@@ -112,8 +113,8 @@ SUBHEADER
   flex-direction: column;
   margin: 0 auto;
   margin-top: 4%;
-  width: 50px;
-  height: 50px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
 }
 
@@ -121,13 +122,13 @@ SUBHEADER
   margin: 0 auto;
   margin-top: 15%;
   color: #C2B8B2;
-  font-size: 0.8em;
+  font-size: 0.6em;
 }
 
 .event-value, .timer-value {
   margin: 0 auto;
   color: #C2B8B2;
-  font-size: 1em;
+  font-size: 0.6em;
 }
 
 
@@ -140,7 +141,7 @@ PLOT
 
   display: grid;
   grid-template-columns: repeat(9, 1fr);
-  padding-top: 10px;
+  padding-top: 15px;
 }
 
 .chart {
@@ -151,6 +152,25 @@ PLOT
   grid-column: 1/2;
   max-width: 45px;
  /*border-right: 2px solid #686963;*/
+}
+
+/*************************************************
+FRECUENCIA
+*************************************************/
+.frecuencia {
+  grid-column: 1/-1;
+  background-color: #c2b8b2;
+  display: inline-block;
+  font-size: 0.8em;
+  text-align: center;
+  margin-top: 1px;
+  margin-top: 2px;
+  z-index: 1;
+}
+
+.frecuencia select {
+  padding: 1px;
+  margin: 0 5px;
 }
 
 /*************************************************
@@ -172,8 +192,8 @@ BOTONES
 
   display: block;
   margin: 0 auto;
-  width: 50px;
-  height: 50px;
+  width: 40px;
+  height: 40px;
   border: none;
   border-radius: 50%;
 }
@@ -185,8 +205,8 @@ BOTONES
 
   display: block;
   margin: 0 auto;
-  width: 50px;
-  height: 50px;
+  width: 40px;
+  height: 40px;
   border: none;
   border-radius: 50%;
 }
@@ -198,8 +218,8 @@ BOTONES
 
   display: block;
   margin: 0 auto;
-  width: 50px;
-  height: 50px;
+  width: 40px;
+  height: 40px;
   border: none;
   border-radius: 50%;
 }
@@ -213,40 +233,174 @@ BOTONES
 /**************************************
 Ajuste para otros dispositivos
 **************************************/
-@media (min-height: 350px) {
+@media (min-width: 250px) {
   .container {
-      grid-template-rows: 11vh 15vh 59vh 15vh;
+      grid-template-rows: 8vh 8vh 69vh 5vh 10vh;
+  }
+
+  .bluetooth {
+    margin: 8px auto;
+  }
+
+  .biosignals {
+      display: none;
+  }
+
+  .subheader div {
+      margin: 0 20px;
+      margin-top: 4%;
+  }
+
+  .buttons button {
+      margin: 0 5px;
+  }
+
+  .y-axis {
+      margin-left: 1px;
+  }
+
+  .plot h6 {
+      color: #c2b8b2;
+      grid-column: 3/8;
+      font-size: 0.65em;
+      margin: 0;
+      margin-bottom: 5px;
+      padding: 3px;
+      border-radius: 10px;
+      text-align: center;
+  }
+
+  .logo img {
+      display: block;  
+      margin: 6px auto;
+      max-width: 63px;
+  }
+
+  #edit {
+      margin-top: -7px;
+  }
+
+}
+
+@media (min-width: 450px) {
+  .container {
+      grid-template-rows: 13vh 16vh 49vh 5vh 17vh;
+  }
+
+  .biosignals {
+      display: block;
+  }
+
+  .plot h6 {
+      color: #c2b8b2;
+      grid-column: 4/7;
+      font-size: 0.8em;
+      margin: 5px 0;
+      margin-bottom: 10px;
+      padding: 3px;
+      border-radius: 10px;
+      text-align: center;
+  }
+
+  .logo img, 
+  .biosignals img {
+      display: block;  
+      margin: 4px auto;
+      max-width: 77px;
   }
 }
 
-@media (min-height: 500px) {
+@media (min-width: 600px) {
   .container {
-      grid-template-rows: 8vh 9vh 74vh 9vh;
+      grid-template-rows: 8vh 8vh 69vh 5vh 10vh;
   }
-}
 
-@media (min-width: 300px) {
-  .chart {
-      margin-left: 5px;
+  .bluetooth {
+    margin: 6px auto;
+  }
+
+  .biosignals {
+      display: block;
+  }
+
+  .buttons button {
+      margin: 0 auto;
+  }
+
+  .y-axis {
+      margin-left: 35px;
+  }
+
+  .subheader div {
+      margin: 0 auto;
+      margin-top: 4%;
+  }
+
+  .logo img {
+      display: block;  
+      margin: 8px auto;
+      max-width: 77px;
+  }
+
+  .biosignals img {
+      display: block;  
+      margin: 8px auto;
+      max-width: 200px;
+  }
+
+  #edit {
+      margin-top: -7px;
   }
 }
 
 @media (min-width: 800px) {
-  .y-axis {
-      margin-left: 60px;
+  .container {
+      grid-template-rows: 8vh 8vh 69vh 5vh 10vh;
   }
 
-  .chart {
-      margin-left: -2px;
+  .bluetooth {
+    margin: 9px auto;
+  }
+
+  .biosignals img {
+      display: block;  
+      margin: 10px auto;
+      max-width: 200px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .y-axis {
+      margin-left: 103px;
+  }
+
+  .bluetooth span {
+      margin-top: 3px;
   }
 }
 
 @media (min-width: 1200px) {
-  .y-axis {
-      margin-left: 75px;
+  .container {
+      grid-template-rows: 8vh 8vh 69vh 5vh 10vh;
   }
-  
-  .chart {
-      margin-left: -22px;
+
+  .bluetooth {
+    margin: 9px auto;
+  }
+
+  .logo img {
+      display: block;  
+      margin: 3px auto;
+      max-width: 77px;
+  }
+
+  .biosignals img {
+      display: block;  
+      margin: 4px auto;
+      max-width: 200px;
+  }
+
+  #edit {
+      margin-top: -5px;
   }
 }
