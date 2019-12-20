@@ -10,11 +10,15 @@ class Yaxis extends Component {
     }
 
     axisRef = (el) => {
+        /* Obtener la referencia del div 
+        yaxis cuando se encuentra en el DOM. */
+        
         this.setState({yAxis: el});
     }
 
     componentDidUpdate() {
-        
+        /* Crear el objeto del eje Y para el plot */
+
         if(this.state.yListo === false && this.props.plot !== '') {
             this.setState({
                 axis: new Rickshaw.Graph.Axis.Y({
@@ -28,7 +32,8 @@ class Yaxis extends Component {
                 }),
     
                 yListo: true
-    
+                
+                /* Hacer el render del eje Y y del grid de la gráfica */
             }, () => this.state.axis.render());
         }
     }

@@ -40,11 +40,15 @@ class Plot extends Component  {
     };
 
     activarInterval = (time) => {
+        /* Activar el intervalo para enviar el número de muestras a App */
+
         this.intervalID = setInterval(() => this.props.nMuestras(this.state.datosSensor.length), time);
         this.intervaloActivo = true;
     };
 
-    desactivarInterval = (time) => {
+    desactivarInterval = () => {
+        /* Desactivar el intervalo para enviar el número de muestras a App */
+
         clearInterval(this.intervalID);
         this.intervaloActivo = false;
     };
@@ -79,14 +83,36 @@ class Plot extends Component  {
         }
 
         if(this.props.recibiendo === false && this.intervaloActivo === true){
-            this.desactivarInterval(400);
+            this.desactivarInterval();
         }
 
     };
 
     obtenerPlotObj =  (obj) => {
-        this.setState({plot: obj}) //, console.log('plot obj from plot', this.state.plot))
+        /* Obtener el objeto plot de rickshaw después de crearlo para enviarlo al componente Yaxis */
+        
+        this.setState({plot: obj}); //, console.log('plot obj from plot', this.state.plot))
     }
+
+    download_csv = (data) => {
+        var csv = 'Muestra\n';
+    
+        data.forEach(function(row) {
+                csv += row;
+                csv += "\n";
+        });
+        
+        console.log(csv);
+
+        /**/
+        var descargarSenal = document.createElement('a');
+    
+        descargarSenal.href = 'data:text/csv;charset=utf-8,' + encodeURI(csv);
+        descargarSenal.target = '_blank';
+        descargarSenal.download = 'data.csv';
+        descargarSenal.click();
+        
+    };
 
     render() {
         
@@ -98,6 +124,14 @@ class Plot extends Component  {
 
         return (
         <div className="plot" ref={plotRef}>
+            <span 
+                className={this.props.recibiendo ? "no-descargar" : "descargar"}
+                onClick={() => this.download_csv(this.state.datosSensor)}
+            >
+                <i className="material-icons">
+                    cloud_download
+                </i>
+            </span>
             <Yaxis plot={this.state.plot}/>
             <Chart datos={datosLength} datoGraf={datoGraf} obtenerPlotObj={this.obtenerPlotObj}/>
         </div>

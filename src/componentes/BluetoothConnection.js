@@ -12,13 +12,20 @@ class BluetoothConnection extends Component {
         selección de dispositivo para conectar, retorna una promesa 
         con el objeto del dispositivo SELECCIONADO. */ 
 
-        return (
-        navigator.bluetooth.requestDevice({
-            // filters: [myFilters]       // filtros o acceptAllDevices
-            optionalServices: [this.state.servicio],
-            acceptAllDevices: true
-          })           
-        );
+        /* Revisar si navigator.bluetooth está disponible */
+
+        if(navigator.bluetooth !== undefined){
+            return (
+                navigator.bluetooth.requestDevice({
+                    // filters: [myFilters]       // filtros o acceptAllDevices
+                    optionalServices: [this.state.servicio],
+                    acceptAllDevices: true
+                  })           
+            );
+        } else {
+            alert('Conexión bluetooth no disponible en este dispositivo o navegador.');
+            return Promise.reject();
+        }
     }
 
     conectarConDispositivoBT = (device) => {

@@ -35,10 +35,13 @@ class App extends Component {
   }
 
   obtenerFrecuencia = (value) => {
+    /* Obtener frecuencia de muestreo desde el componente Frecuencia */
+
     this.setState({freq: parseInt(value)});
   }
 
   nMuestras = (value) => {
+    /* Obtener el número de muestras desde el elemento Plot */
 
     if(this.state.caracteristica !== ''){
       let frecuencia = this.state.freq;
@@ -49,7 +52,8 @@ class App extends Component {
   }
 
   estadoRecibiendo = (estado) => {
-    this.setState({recibiendo: estado}, () => console.log(this.state.recibiendo));
+    /* DEtectar cuando se presiona play o stop desde el elemento Buttons */
+    this.setState({recibiendo: estado}) //, () => console.log(this.state.recibiendo));
   }
 
   render(){
