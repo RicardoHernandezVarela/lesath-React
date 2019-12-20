@@ -8,7 +8,7 @@ class Frecuencia extends Component {
     }
 
     componentDidMount() {
-        console.log(this.state.value);
+        //console.log(this.state.value);
     }
 
     cambiarFrecuencia(event) {

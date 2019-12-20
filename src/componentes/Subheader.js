@@ -10,7 +10,7 @@ const Subheader = (props) => {
         <div className="subheader">
             <Event />
             <Terminal mensaje={props.mensaje}/>
-            <Timer />
+            <Timer time={props.time} />
         </div>
     )
 }

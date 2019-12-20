@@ -33,7 +33,7 @@ class Chart extends Component {
             let plotWidth = this.state.chart.parentNode.clientWidth;
             let pltWidth = 0;
             plotWidth <= 380 ? pltWidth = plotWidth * 0.7 : pltWidth = plotWidth * 0.8;
-            console.log(plotWidth, pltWidth);
+            //console.log(plotWidth, pltWidth);
 
             this.setState({
                 plot: new Rickshaw.Graph({

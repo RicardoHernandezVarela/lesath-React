@@ -13,8 +13,9 @@ class App extends Component {
   state = {
     caracteristica: '',
     mensaje: 'Ningún dispositivo conectado',
-    muestras: 0,
-    freq: 250
+    recibiendo: 2,
+    freq: 250,
+    time: 0
   }
 
   obtenerEstadoConexion = (estado) => {
@@ -38,23 +39,28 @@ class App extends Component {
   }
 
   nMuestras = (value) => {
-    this.setState({muestras: value});
+
+    if(this.state.caracteristica !== ''){
+      let frecuencia = this.state.freq;
+      let timeFreq = Math.floor(value/frecuencia);
+      
+      this.setState({time: timeFreq}) //, () => console.log(timeFreq))
+    }
+  }
+
+  estadoRecibiendo = (estado) => {
+    this.setState({recibiendo: estado}, () => console.log(this.state.recibiendo));
   }
 
   render(){
-    let muestras = this.state.muestras;
-    let frecuencia = this.state.freq;
-
-    let time = Math.floor(muestras/frecuencia);
-    console.log(time);
 
     return (
       <div className="container">
         <Header obtenerEstadoConexion={this.obtenerEstadoConexion}/>
-        <Subheader mensaje={this.state.mensaje} />
-        <Plot caracteristica={this.state.caracteristica} nMuestras={this.nMuestras}/>
+        <Subheader mensaje={this.state.mensaje} time={this.state.time} />
+        <Plot caracteristica={this.state.caracteristica} nMuestras={this.nMuestras} recibiendo={this.state.recibiendo}/>
         <Frecuencia obtenerFrecuencia={this.obtenerFrecuencia}/>
-        <Buttons caracteristica={this.state.caracteristica} />
+        <Buttons caracteristica={this.state.caracteristica} estadoRecibiendo={this.estadoRecibiendo}/>
       </div>
     );
   }

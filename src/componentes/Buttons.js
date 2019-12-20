@@ -20,10 +20,12 @@ class Buttons extends PureComponent {
 
     if(this.props.caracteristica) {
       this.send(this.props.caracteristica, 'i');
-      console.log('iniciar la transmición de datos', this.props.caracteristica);
+      //console.log('iniciar la transmición de datos', this.props.caracteristica);
     } else {
       console.log('no se ha actualizado la caract');
     }
+
+    this.props.estadoRecibiendo(true);
   }
 
   parar = () => {
@@ -36,6 +38,8 @@ class Buttons extends PureComponent {
     } else {
       console.log('no se ha actualizado la caract');
     }
+
+    this.props.estadoRecibiendo(false);
   }
 
   render() {

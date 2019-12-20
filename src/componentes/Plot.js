@@ -30,14 +30,32 @@ class Plot extends Component  {
             ]
         }));
 
-    }
+    };
 
     conectarseACambiosDelSensor = (caracteristica) => {
         /* Conectar la característica del modulo BT a la función que procesa los datos que 
         envia el sensor a através del módulo BT */
 
         caracteristica.oncharacteristicvaluechanged = this.recibirDatos;
-    }
+    };
+
+    activarInterval = (time) => {
+        this.intervalID = setInterval(() => this.props.nMuestras(this.state.datosSensor.length), time);
+        this.intervaloActivo = true;
+    };
+
+    desactivarInterval = (time) => {
+        clearInterval(this.intervalID);
+        this.intervaloActivo = false;
+    };
+
+    componentDidMount() {
+        this.activarInterval(400);
+    };
+    
+    componentWillUnmount() {
+        clearInterval(this.intervalID);
+    };
 
     componentDidUpdate() {
         /* Verificar cuando se recibe el objeto que contiene la característica para conectarse
@@ -53,12 +71,21 @@ class Plot extends Component  {
             console.log(this.props.caracteristica);
             this.setState({caracteristicaLista: false})
         } else {
-            //console.log('no se conecto a la caract');<Yaxis plot={this.state.plot}/>
+        
         }
+
+        if(this.intervaloActivo === false){
+            this.activarInterval(400);
+        }
+
+        if(this.props.recibiendo === false && this.intervaloActivo === true){
+            this.desactivarInterval(400);
+        }
+
     };
 
     obtenerPlotObj =  (obj) => {
-        this.setState({plot: obj}, console.log('plot obj from plot', this.state.plot))
+        this.setState({plot: obj}) //, console.log('plot obj from plot', this.state.plot))
     }
 
     render() {

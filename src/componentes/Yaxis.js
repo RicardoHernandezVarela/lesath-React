@@ -36,7 +36,9 @@ class Yaxis extends Component {
     render () {
         
         return (
-            <div className="y-axis" ref={this.axisRef}>  </div>
+            <div className="y-axis" ref={this.axisRef}>  
+                <h5 className="volts">Volts</h5> 
+            </div>
         )
     }
 }

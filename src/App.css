@@ -71,6 +71,10 @@ HEADER
   margin-right: 10px;
 }
 
+.bluetooth span:hover {
+  cursor: pointer;
+}
+
 /*************************************************
 SUBHEADER
 *************************************************/
@@ -89,10 +93,9 @@ SUBHEADER
   display: flex;
   flex-direction: column;
   margin: 0 auto;
-  margin-top: 4%;
-  width: 40px;
+  width: 60px;
   height: 40px;
-  border-radius: 50%;
+  border-radius: 10px;
 }
 
 .terminal {
@@ -100,7 +103,7 @@ SUBHEADER
 
   display: block;
   margin: 3% auto;
-  font-size: 0.7em;
+  font-size: 0.6em;
   color: #125e8a;
   text-align: center;
 }
@@ -113,9 +116,9 @@ SUBHEADER
   flex-direction: column;
   margin: 0 auto;
   margin-top: 4%;
-  width: 40px;
+  width: 60px;
   height: 40px;
-  border-radius: 50%;
+  border-radius: 10px;
 }
 
 .event-name, .timer-title {
@@ -146,6 +149,15 @@ PLOT
 
 .chart {
   grid-column: 2/-1;
+}
+
+.volts{
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  margin-top: 150px;
+  margin-left: -10px;
+  font-weight: 400;
+  position: absolute;
 }
 
 .y-axis {
@@ -183,6 +195,10 @@ BOTONES
 
   display: grid;
   grid-template-columns: repeat(9, 1fr);
+}
+
+.buttons button:hover {
+  cursor: pointer;
 }
 
 .play {
@@ -235,11 +251,16 @@ Ajuste para otros dispositivos
 **************************************/
 @media (min-width: 250px) {
   .container {
-      grid-template-rows: 8vh 8vh 69vh 5vh 10vh;
+      grid-template-rows: 8vh 8vh 69vh 6vh 9vh;
+  }
+
+  .logo {
+    margin-left: 28px;
   }
 
   .bluetooth {
-    margin: 8px auto;
+    margin: 9px auto;
+    margin-right: 22px;
   }
 
   .biosignals {
@@ -257,6 +278,17 @@ Ajuste para otros dispositivos
 
   .y-axis {
       margin-left: 1px;
+  }
+
+  .volts{
+    margin-top: 155px;
+    margin-left: 1px;
+    font-size: 0.7em;
+    font-weight: 500;
+  }
+
+  .plot {
+    padding-top: 15px;
   }
 
   .plot h6 {
@@ -284,7 +316,7 @@ Ajuste para otros dispositivos
 
 @media (min-width: 450px) {
   .container {
-      grid-template-rows: 13vh 16vh 49vh 5vh 17vh;
+      grid-template-rows: 13vh 16vh 49vh 6vh 16vh;
   }
 
   .biosignals {
@@ -302,6 +334,12 @@ Ajuste para otros dispositivos
       text-align: center;
   }
 
+  .volts{
+    margin-top: 152px;
+    margin-left: -3px;
+    font-size: 0.8em;
+  }
+
   .logo img, 
   .biosignals img {
       display: block;  
@@ -312,7 +350,7 @@ Ajuste para otros dispositivos
 
 @media (min-width: 600px) {
   .container {
-      grid-template-rows: 8vh 8vh 69vh 5vh 10vh;
+      grid-template-rows: 8vh 8vh 69vh 6vh 9vh;
   }
 
   .bluetooth {
@@ -329,6 +367,12 @@ Ajuste para otros dispositivos
 
   .y-axis {
       margin-left: 35px;
+  }
+  
+  .volts{
+    margin-top: 177px;
+    margin-left: -7px;
+    font-size: 0.8em;
   }
 
   .subheader div {
@@ -355,7 +399,7 @@ Ajuste para otros dispositivos
 
 @media (min-width: 800px) {
   .container {
-      grid-template-rows: 8vh 8vh 69vh 5vh 10vh;
+      grid-template-rows: 8vh 8vh 69vh 6vh 9vh;
   }
 
   .bluetooth {
@@ -367,11 +411,23 @@ Ajuste para otros dispositivos
       margin: 10px auto;
       max-width: 200px;
   }
+
+  .volts{
+    margin-top: 177px;
+    margin-left: -7px;
+    font-size: 0.8em;
+  }
 }
 
 @media (min-width: 1024px) {
   .y-axis {
       margin-left: 103px;
+  }
+
+  .volts{
+    margin-top: 180px;
+    margin-left: -7px;
+    font-size: 0.8em;
   }
 
   .bluetooth span {
@@ -381,7 +437,7 @@ Ajuste para otros dispositivos
 
 @media (min-width: 1200px) {
   .container {
-      grid-template-rows: 8vh 8vh 69vh 5vh 10vh;
+      grid-template-rows: 8vh 8vh 69vh 6vh 9vh;
   }
 
   .bluetooth {
@@ -400,7 +456,33 @@ Ajuste para otros dispositivos
       max-width: 200px;
   }
 
+  .volts{
+    margin-top: 177px;
+    margin-left: -7px;
+    font-size: 0.8em;
+  }
+
   #edit {
       margin-top: -5px;
+  }
+}
+
+@media screen and (max-height: 450px) {
+  .container {
+    grid-template-rows: 13vh 14vh 49vh 9vh 15vh;
+  }
+
+  .plot {
+    padding-top: 5px;
+  }
+
+  .volts{
+    margin-top: 55px;
+    margin-left: -7px;
+    font-size: 0.8em;
+  }
+
+  .frecuencia {
+    padding-bottom: 5px;
   }
 }
