@@ -151,19 +151,20 @@ PLOT
   grid-column: 5/6;
   position: absolute;
   display: block;
-  color: #197bbd;
+  color: #0F084B;
   margin-left: 49%;
   z-index: 1;
+}
+
+.descargar > i {
+  font-size: 2.5em;
 }
 
 .descargar:hover {
   cursor: pointer;
 }
 
-.no-descargar {
-  grid-column: 5/6;
-  color: #197bbd;
-  text-align: center;
+.no-descargar, .no-link {
   display: none;
 }
 

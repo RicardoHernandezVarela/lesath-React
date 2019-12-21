@@ -102,11 +102,8 @@ class Plot extends Component  {
                 csv += "\n";
         });
         
-        console.log(csv);
-
-        /**/
         var descargarSenal = document.createElement('a');
-    
+        
         descargarSenal.href = 'data:text/csv;charset=utf-8,' + encodeURI(csv);
         descargarSenal.target = '_blank';
         descargarSenal.download = 'data.csv';
