@@ -29,5 +29,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "grunt": "^1.0.4",
+    "grunt-contrib-uglify": "^4.0.1"
   }
 }
