@@ -1,12 +1,13 @@
 import React, {Component} from 'react';
-import Rickshaw from 'rickshaw';
+//import Rickshaw from 'rickshaw';
 
 class Yaxis extends Component {
 
     state = {
         yAxis: '',
         yListo: false,
-        axis: ''
+        axis: '',
+        hoverDetail: ''
     }
 
     axisRef = (el) => {
@@ -14,27 +15,36 @@ class Yaxis extends Component {
         yaxis cuando se encuentra en el DOM. */
         
         this.setState({yAxis: el});
-    }
+    };
+
+    generarEje = (plot, element) => {
+        this.setState({
+            axis: new window.Rickshaw.Graph.Axis.Y({
+                graph: plot,
+                    orientation: 'left',
+                    tickFormat: function (y) {
+                        return y.toFixed(2);
+                    },
+                    ticks: 5,
+                    element: element
+            }),
+
+            hoverDetail: new window.Rickshaw.Graph.HoverDetail( {
+                graph: plot,
+                yFormatter: function(y) { return y + "V" }
+            }),
+
+            yListo: true
+            
+            /* Hacer el render del eje Y y del grid de la gráfica */
+        }, () => this.state.axis.render());
+    };
 
     componentDidUpdate() {
         /* Crear el objeto del eje Y para el plot */
 
         if(this.state.yListo === false && this.props.plot !== '') {
-            this.setState({
-                axis: new Rickshaw.Graph.Axis.Y({
-                    graph: this.props.plot,
-                        orientation: 'left',
-                        tickFormat: function (y) {
-                            return y.toFixed(2);
-                        },
-                        ticks: 5,
-                        element:this.state.yAxis
-                }),
-    
-                yListo: true
-                
-                /* Hacer el render del eje Y y del grid de la gráfica */
-            }, () => this.state.axis.render());
+            this.generarEje(this.props.plot, this.state.yAxis);
         }
     }
 

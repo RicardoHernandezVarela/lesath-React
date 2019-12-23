@@ -18,6 +18,21 @@ class App extends Component {
     time: 0
   }
 
+  incluirLibreria = (fuente) => {
+    const script = document.createElement("script");
+    script.async = true;
+    script.src = fuente;
+    
+    document.body.appendChild(script);
+  }
+
+  componentDidMount() {
+    /***********************************************************************************************
+    this.incluirLibreria("https://cdnjs.cloudflare.com/ajax/libs/d3/3.2.0/d3.js");
+    this.incluirLibreria("https://cdnjs.cloudflare.com/ajax/libs/rickshaw/1.6.5/rickshaw.js");
+    ***********************************************************************************************/
+  }
+
   obtenerEstadoConexion = (estado) => {
 
     /* Obtener información del estado de la conexión desdé

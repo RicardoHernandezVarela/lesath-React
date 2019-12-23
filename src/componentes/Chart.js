@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import Rickshaw from 'rickshaw';
+//import Rickshaw from 'rickshaw';
 
 class Chart extends Component {
 
@@ -15,6 +15,36 @@ class Chart extends Component {
 
         this.setState({chart: el});
     }
+
+    generarPlot = () => {
+        let plotWidth = this.state.chart.parentNode.clientWidth;
+        let pltWidth = 0;
+        plotWidth <= 429 ? pltWidth = plotWidth * 0.6 : pltWidth = plotWidth * 0.8;
+        //console.log(plotWidth, pltWidth);
+
+        this.setState({
+            plot: new window.Rickshaw.Graph({
+                element: this.state.chart,
+                width: pltWidth,
+                height: this.state.chart.parentNode.clientHeight * 0.85, 
+                renderer: "line",
+                min: "0",
+                max: "4",
+                series: new window.Rickshaw.Series.FixedDuration([{
+                    name: 'data',
+                    color: '#446CB3'
+                }], undefined, 
+                {
+                    timeInterval: 300,
+                    maxDataPoints: 500
+                })
+            }),
+
+            plotListo: true,
+
+            /* Enviar el objeto plot de rickshaw al componente Plot*/
+        }, () => this.props.obtenerPlotObj(this.state.plot)); 
+    };
 
     ajustar = (plotA) => {
         /* Ajustar las dimensiones en el objeto plot de rickshaw */
@@ -38,34 +68,8 @@ class Chart extends Component {
 
         /* Crear el objeto plot de rickshaw */
         if(this.state.plotListo === false && this.state.chart !== '') {
+            this.generarPlot();
 
-            let plotWidth = this.state.chart.parentNode.clientWidth;
-            let pltWidth = 0;
-            plotWidth <= 429 ? pltWidth = plotWidth * 0.6 : pltWidth = plotWidth * 0.8;
-            //console.log(plotWidth, pltWidth);
-
-            this.setState({
-                plot: new Rickshaw.Graph({
-                    element: this.state.chart,
-                    width: pltWidth,
-                    height: this.state.chart.parentNode.clientHeight * 0.85, 
-                    renderer: "line",
-                    min: "0",
-                    max: "4",
-                    series: new Rickshaw.Series.FixedDuration([{
-                        name: 'data',
-                        color: '#446CB3'
-                    }], undefined, 
-                    {
-                        timeInterval: 300,
-                        maxDataPoints: 500
-                    })
-                }),
-
-                plotListo: true,
-
-                /* Enviar el objeto plot de rickshaw al componente Plot*/
-            }, () => this.props.obtenerPlotObj(this.state.plot)); 
         }
 
         /* Actualizar la gráfica cuando se recibe un dato del sensor */
